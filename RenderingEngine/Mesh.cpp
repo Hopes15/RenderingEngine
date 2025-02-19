@@ -9,24 +9,54 @@ Mesh::Mesh() : pRenderer(HDL_Renderer::GetInstance())
 
 Mesh::~Mesh()
 {
-	delete pIndexBuff;
-	delete pVertexBuff;
+	for (auto indexBuff : mIndexBuffs)
+	{
+		delete indexBuff;
+	}
+
+	for (auto vertexBuff : mVertexBuffs)
+	{
+		delete vertexBuff;
+	}
 }
 
-void Mesh::Init()
+void Mesh::Init(const wchar_t* fileName)
 {
-	//Vertex
-	UINT64 size   = sizeof(Vertex) * mVertices.size();
-	UINT   stride = sizeof(Vertex);
+	//Load設定
+	ImportSettings settings =
+	{
+		fileName,
+		mMeshDatas,
+		false,
+		true
+	};
 
-	pVertexBuff   = new HDL_VertexBuffer(size, stride);
-	pVertexBuff->CopyBufferToVRAM(mVertices.data());
+	//モデルロード
+	ModelLoader modelloader(settings);
+
+
+	//ロードデータからバッファの作成
+	//Vertex
+	for (size_t i = 0; i < mMeshDatas.size(); i++)
+	{
+		UINT64 size   = sizeof(Vertex) * mMeshDatas[i].vertices.size();
+		UINT   stride = sizeof(Vertex);
+
+		auto pVB      = new HDL_VertexBuffer(size, stride);
+		pVB->CopyBufferToVRAM(mMeshDatas[i].vertices.data());
+		mVertexBuffs.push_back(pVB);
+
+	}
 
 	//Index
-	size		  = sizeof(uint16_t) * mIndices.size();
+	for (size_t i = 0; i < mMeshDatas.size(); i++)
+	{
+		UINT64 size = sizeof(uint16_t) * mMeshDatas[i].indices.size();
 
-	pIndexBuff	  = new HDL_IndexBuffer(size);
-	pIndexBuff->CopyBufferToVRAM(mIndices.data());
+		auto pIB    = new HDL_IndexBuffer(size);
+		pIB->CopyBufferToVRAM(mMeshDatas[i].indices.data());
+		mIndexBuffs.push_back(pIB);
+	}
 }
 
 void Mesh::Draw()
@@ -37,12 +67,19 @@ void Mesh::Draw()
 	//Set PrimitiveTopology
 	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	//Set VertexBuffer
-	cmdList->IASetVertexBuffers(0, 1, pVertexBuff->GetView());
+	for (size_t i = 0; i < mMeshDatas.size(); i++)
+	{
+		auto vbView = mVertexBuffs[i]->GetView();
+		auto ibView = mIndexBuffs[i]->GetView();
 
-	//Set IndexBuffer
-	cmdList->IASetIndexBuffer(pIndexBuff->GetView());
+		//Set VertexBuffer
+		cmdList->IASetVertexBuffers(0, 1, vbView);
 
-	//Draw
-	cmdList->DrawIndexedInstanced(6, 1, 0, 0, 0);
+		//Set IndexBuffer
+		cmdList->IASetIndexBuffer(ibView);
+
+		//Draw
+		auto indices = static_cast<UINT>(mMeshDatas[i].indices.size());
+		cmdList->DrawIndexedInstanced(indices, 1, 0, 0, 0);
+	}
 }

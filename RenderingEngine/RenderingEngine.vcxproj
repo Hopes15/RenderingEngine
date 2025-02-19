@@ -134,6 +134,7 @@
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameSystem.cpp" />
+    <ClCompile Include="Loader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameSystem.h" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="Transform.h" />

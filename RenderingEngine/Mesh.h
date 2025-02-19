@@ -1,14 +1,10 @@
 #pragma once
 #include <DirectXMath.h>
 #include <vector>
+#include <string>
+#include "Loader.h"
 
 using namespace DirectX;
-
-struct Vertex
-{
-	XMFLOAT3 position;
-	XMFLOAT2 uv;
-};
 
 class Mesh
 {
@@ -17,17 +13,15 @@ public:
 
 	~Mesh();
 
-	void Init();
+	void Init(const wchar_t* fileName);
 
 	void Draw();
 
-public:
-	std::vector<Vertex>   mVertices;
-	std::vector<uint16_t> mIndices;
-
 private:
-	class HDL_VertexBuffer* pVertexBuff = nullptr;
-	class HDL_IndexBuffer*  pIndexBuff  = nullptr;
+	std::vector<MeshData> mMeshDatas;
+	std::vector<class HDL_VertexBuffer*> mVertexBuffs;
+	std::vector<class HDL_IndexBuffer*>  mIndexBuffs;
+
 	class HDL_Renderer*		pRenderer	= nullptr;
 };
 

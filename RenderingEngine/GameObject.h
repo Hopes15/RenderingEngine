@@ -7,7 +7,7 @@ public:
 
 	~GameObject();
 
-	void Update();
+	void Update(float deltaTime);
 
 	void Draw();
 
@@ -23,5 +23,7 @@ private:
 	class MeshRenderer*		  pMeshRenderer = nullptr;
 	class HDL_DescriptorHeap* pDescHeap     = nullptr;
 	class HDL_Renderer*		  pRenderer		= nullptr;
+
+	float erapsedTime = 0.0f;
 };
 

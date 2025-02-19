@@ -18,6 +18,9 @@
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Loader.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameSystem.h" />
@@ -36,6 +39,9 @@
     <ClInclude Include="CameraComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Loader.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -43,6 +49,9 @@
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{ff816f16-db64-420f-8380-30b8d3429746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{22ed6a28-bf21-4af1-83d1-7695452c00ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

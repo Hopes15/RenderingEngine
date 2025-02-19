@@ -22,9 +22,9 @@ GameObject::~GameObject()
 	delete pMesh;
 }
 
-void GameObject::Update()
+void GameObject::Update(float deltaTime)
 {
-	pTransform->mRotation.y += 0.01f;
+	pTransform->mRotation.y += 1.0f * deltaTime;
 
 	pTransform->Update();
 	pCam->Update();
@@ -38,25 +38,8 @@ void GameObject::Draw()
 
 void GameObject::LoadComponents()
 {
-	//Mesh
-	Vertex vertices[] =
-	{
-		{{ -1.0f, -1.0f, 0.0f}, {0.0f, 1.0f}}, //¶‰º
-		{{ -1.0f,  1.0f, 0.0f}, {0.0f, 0.0f}}, //¶ã
-		{{  1.0f, -1.0f, 0.0f}, {1.0f, 1.0f}}, //‰E‰º
-		{{  1.0f,  1.0f, 0.0f}, {1.0f, 0.0f}}  //‰Eã
-	};
-
-	uint16_t indices[] =
-	{
-		0, 1, 2,
-		2, 1, 3
-	};
-
 	pMesh = new Mesh();
-	pMesh->mVertices = std::vector<Vertex>(std::begin(vertices), std::end(vertices));
-	pMesh->mIndices  = std::vector<uint16_t>(std::begin(indices), std::end(indices));
-	pMesh->Init();
+	pMesh->Init(L"Assets/Alicia/FBX/Alicia_solid_Unity.FBX");
 
 	//DescriptorHeap
 	pDescHeap = new HDL_DescriptorHeap();
@@ -66,7 +49,7 @@ void GameObject::LoadComponents()
 
 	//Transform
 	pTransform = new Transform();
-	pTransform->SetScale(2.0f, 2.0f, 2.0f);
+	pTransform->SetScale(0.5f, 0.5f, 0.5f);
 	pTransform->Init(heapHandle);
 
 	heapHandle.ptr += pRenderer->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
