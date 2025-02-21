@@ -21,6 +21,7 @@
     <ClCompile Include="Loader.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Material.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameSystem.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="Loader.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Material.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">

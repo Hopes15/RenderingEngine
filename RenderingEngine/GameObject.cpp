@@ -18,7 +18,10 @@ GameObject::~GameObject()
 	delete pMeshRenderer;
 	delete pCam;
 	delete pTransform;
-	delete pDescHeap;
+	for (auto descHeap : pDescHeaps)
+	{
+		delete descHeap;
+	}
 	delete pMesh;
 }
 
@@ -40,16 +43,24 @@ void GameObject::LoadComponents()
 {
 	pMesh = new Mesh();
 	pMesh->Init(L"Assets/Alicia/FBX/Alicia_solid_Unity.FBX");
+	//pMesh->Init(L"Assets/FREE-Glass_ver1_788polygon.fbx");
+	//pMesh->Init(L"Assets/uploads_files_5718873_Volkswagen+Beetle+1963.fbx");
 
 	//DescriptorHeap
-	pDescHeap = new HDL_DescriptorHeap();
-	pDescHeap->CreateAsCBV_SRV_UAV(2);
+	//For CBuff
+	pDescHeaps[0] = new HDL_DescriptorHeap();
+	pDescHeaps[0]->CreateAsCBV_SRV_UAV(2);
 
-	auto heapHandle = pDescHeap->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
+	//For SResource
+	pDescHeaps[1] = new HDL_DescriptorHeap();
+	pDescHeaps[1]->CreateAsCBV_SRV_UAV(1);
+
+	auto heapHandle = pDescHeaps[0]->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
 
 	//Transform
 	pTransform = new Transform();
-	pTransform->SetScale(0.5f, 0.5f, 0.5f);
+	pTransform->SetPosition(0.0f, -20.0f, 0.0f);
+	pTransform->SetScale(1.0f, 1.0f, 1.0f);
 	pTransform->Init(heapHandle);
 
 	heapHandle.ptr += pRenderer->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
@@ -59,6 +70,6 @@ void GameObject::LoadComponents()
 	pCam->Init(heapHandle);
 
 	//MeshRenderer
-	pMeshRenderer = new MeshRenderer(pDescHeap);
+	pMeshRenderer = new MeshRenderer(pDescHeaps[0]);
 	pMeshRenderer->Init();
 }

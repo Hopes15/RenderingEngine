@@ -15,8 +15,8 @@ CameraComponent::~CameraComponent()
 void CameraComponent::Init(D3D12_CPU_DESCRIPTOR_HANDLE heapHandle)
 {
 	//ViewProjections—ñ(3D)
-	XMFLOAT3 pos   (0, 70, -50);
-	XMFLOAT3 target(0, 50, 0);
+	XMFLOAT3 pos   (0, 120, -150);
+	XMFLOAT3 target(0, 70, 0);
 	XMFLOAT3 up    (0, 1, 0);
 
 	//À•WŒn‚Ì‰Šú‰»

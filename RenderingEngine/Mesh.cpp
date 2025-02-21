@@ -36,9 +36,9 @@ void Mesh::Init(const wchar_t* fileName)
 
 
 	//ロードデータからバッファの作成
-	//Vertex
 	for (size_t i = 0; i < mMeshDatas.size(); i++)
 	{
+		//Vertex
 		UINT64 size   = sizeof(Vertex) * mMeshDatas[i].vertices.size();
 		UINT   stride = sizeof(Vertex);
 
@@ -46,14 +46,10 @@ void Mesh::Init(const wchar_t* fileName)
 		pVB->CopyBufferToVRAM(mMeshDatas[i].vertices.data());
 		mVertexBuffs.push_back(pVB);
 
-	}
+		//Index
+		size = sizeof(uint16_t) * mMeshDatas[i].indices.size();
 
-	//Index
-	for (size_t i = 0; i < mMeshDatas.size(); i++)
-	{
-		UINT64 size = sizeof(uint16_t) * mMeshDatas[i].indices.size();
-
-		auto pIB    = new HDL_IndexBuffer(size);
+		auto pIB = new HDL_IndexBuffer(size);
 		pIB->CopyBufferToVRAM(mMeshDatas[i].indices.data());
 		mIndexBuffs.push_back(pIB);
 	}
