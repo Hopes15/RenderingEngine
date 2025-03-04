@@ -36,7 +36,6 @@ void GameObject::Update(float deltaTime)
 void GameObject::Draw()
 {
 	pMeshRenderer->Draw();
-	pMesh->Draw();
 }
 
 void GameObject::LoadComponents()
@@ -50,10 +49,6 @@ void GameObject::LoadComponents()
 	//For CBuff
 	pDescHeaps[0] = new HDL_DescriptorHeap();
 	pDescHeaps[0]->CreateAsCBV_SRV_UAV(2);
-
-	//For SResource
-	pDescHeaps[1] = new HDL_DescriptorHeap();
-	pDescHeaps[1]->CreateAsCBV_SRV_UAV(1);
 
 	auto heapHandle = pDescHeaps[0]->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
 
@@ -70,6 +65,6 @@ void GameObject::LoadComponents()
 	pCam->Init(heapHandle);
 
 	//MeshRenderer
-	pMeshRenderer = new MeshRenderer(pDescHeaps[0]);
+	pMeshRenderer = new MeshRenderer(pDescHeaps, pMesh);
 	pMeshRenderer->Init();
 }

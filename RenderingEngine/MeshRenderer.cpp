@@ -3,10 +3,14 @@
 #include "HDL_PSO.h"
 #include "HDL_Renderer.h"
 #include "HDL_DescriptorHeap.h"
+#include "HDL_VertexBuffer.h"
+#include "HDL_IndexBuffer.h"
+#include "Mesh.h"
 
-MeshRenderer::MeshRenderer(HDL_DescriptorHeap* descHeap) :
+MeshRenderer::MeshRenderer(HDL_DescriptorHeap** descHeap, class Mesh* mesh) :
 	pRenderer(HDL_Renderer::GetInstance()),
-	pDescHeap(descHeap)
+	pDescHeap(descHeap),
+	pMesh(mesh)
 {
 }
 
@@ -19,13 +23,14 @@ MeshRenderer::~MeshRenderer()
 void MeshRenderer::Init()
 {
 	//DescriptorRange
-	CD3DX12_DESCRIPTOR_RANGE descRanges[2] = {};
+	CD3DX12_DESCRIPTOR_RANGE descRanges[3] = {};
 	descRanges[0].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, /*NumDescriptor = */ 1, /*slot = */ 0);
 	descRanges[1].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, /*NumDescriptor = */ 1, /*slot = */ 1);
 
 	//RootParameter
-	CD3DX12_ROOT_PARAMETER rootParams[1] = {};
+	CD3DX12_ROOT_PARAMETER rootParams[3] = {};
 	rootParams[0].InitAsDescriptorTable(/*NumDescRanges = */ 2, &descRanges[0]);
+
 
 	//Sampler
 	CD3DX12_STATIC_SAMPLER_DESC samplerDesc[1] = {};
@@ -68,14 +73,38 @@ void MeshRenderer::Draw()
 {
 	//Get CmdList
 	auto cmdList = pRenderer->GetCmdList();
+	auto meshDatas = pMesh->GetMeshDatas();
 
 	//Set Pipeline, RootSignature
 	cmdList->SetPipelineState(pPSO->GetPointerOfPipeline());
 	cmdList->SetGraphicsRootSignature(pRootSig->GetPointerOfRootSignature());
 
-	//Set DescriptorHeap
-	cmdList->SetDescriptorHeaps(1, pDescHeap->GetAddressOfDescriptorHeap());
+	//Set PrimitiveTopology
+	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	auto heapHandle = pDescHeap->GetPointerOfDescriptorHeap()->GetGPUDescriptorHandleForHeapStart();
+	//Set DescriptorHeap
+	//WVP
+	cmdList->SetDescriptorHeaps(1, pDescHeap[0]->GetAddressOfDescriptorHeap());
+
+	auto heapHandle = pDescHeap[0]->GetPointerOfDescriptorHeap()->GetGPUDescriptorHandleForHeapStart();
 	cmdList->SetGraphicsRootDescriptorTable(0, heapHandle);
+
+	auto vertBuffs  = pMesh->GetVertexBuffs();
+	auto indexBuffs = pMesh->GetIndexBuffs();
+
+	for (size_t i = 0; i < meshDatas.size(); i++)
+	{
+		auto vbView = vertBuffs[i]->GetView();
+		auto ibView = indexBuffs[i]->GetView();
+
+		//Set VertexBuffer
+		cmdList->IASetVertexBuffers(0, 1, vbView);
+
+		//Set IndexBuffer
+		cmdList->IASetIndexBuffer(ibView);
+
+		//Draw
+		auto indices = static_cast<UINT>(meshDatas[i].indices.size());
+		cmdList->DrawIndexedInstanced(indices, 1, 0, 0, 0);
+	}
 }

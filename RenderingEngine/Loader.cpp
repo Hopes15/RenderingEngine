@@ -1,52 +1,8 @@
 #include "Loader.h"
+#include "Utilities.h"
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-#include <filesystem>
-
-namespace fs = std::filesystem;
-
-//ファイルパスからディレクトリパスのみを取得
-std::wstring GetDirPath(const std::wstring& path)
-{
-    fs::path p = path.c_str();
-    return p.remove_filename().c_str();
-}
-
-//WstringからString型に変換
-std::string ConvertWString(const std::wstring& wstr)
-{
-    auto length = WideCharToMultiByte(CP_UTF8, 0U, wstr.data(), -1, nullptr, 0, nullptr, nullptr);
-
-    //Length分配列を確保
-    auto buffer = new char[length];
-
-    //確保した配列に変換後の内容をコピー
-    WideCharToMultiByte(CP_UTF8, 0U, wstr.data(), -1, buffer, length, nullptr, nullptr);
-
-    std::string result(buffer);
-    delete[] buffer;
-    buffer = nullptr;
-
-    return result;
-}
-
-//StringからWstringに変換
-std::wstring ConvertString(const std::string& str)
-{
-    auto num1 = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED | MB_ERR_INVALID_CHARS, str.c_str(), -1, nullptr, 0);
-
-    std::wstring wstr;
-    wstr.resize(num1);
-
-    //変換後の情報をwstrにコピー
-    auto num2 = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED | MB_ERR_INVALID_CHARS, str.c_str(), -1, &wstr[0], num1);
-
-    //整合性チェック
-    assert(num1 == num2);
-
-    return wstr;
-}
 
 ModelLoader::ModelLoader(ImportSettings settings)
 {

@@ -21,7 +21,7 @@ private:
 	class Transform*		  pTransform	= nullptr;
 	class CameraComponent*	  pCam			= nullptr;
 	class MeshRenderer*		  pMeshRenderer = nullptr;
-	class HDL_DescriptorHeap* pDescHeaps[2];
+	class HDL_DescriptorHeap* pDescHeaps[1];
 	class HDL_Renderer*		  pRenderer		= nullptr;
 
 	float erapsedTime = 0.0f;

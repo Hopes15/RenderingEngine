@@ -1,4 +1,5 @@
-
+SamplerState smp : register(s0);
+Texture2D    tex : register(t0);
 
 struct Input
 {
