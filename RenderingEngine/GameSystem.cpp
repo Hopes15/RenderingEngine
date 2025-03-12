@@ -3,7 +3,6 @@
 #include "HDL_Window.h"
 #include "HDL_BackBuffer.h"
 #include "HDL_DepthStencilBuffer.h"
-#include "GameObject.h"
 
 GameSystem::GameSystem() :
 	WIDTH(1920),
@@ -15,7 +14,6 @@ GameSystem::GameSystem() :
 
 GameSystem::~GameSystem()
 {
-	delete pGameObject;
 	delete pDSBuff;
 	delete pBackBuff;
 	pRenderer->Destroy();
@@ -38,7 +36,6 @@ void GameSystem::Initialize()
 	pDSBuff = new HDL_DepthStencilBuffer();
 
 	//GameObject¶¬
-	pGameObject = new GameObject();
 }
 
 void GameSystem::ExcuteSystem()
@@ -64,18 +61,26 @@ void GameSystem::Input()
 
 void GameSystem::Update()
 {
-	pGameObject->Update(FIXED_DELTA_TIME);
 }
 
 void GameSystem::Output()
 {
+	//•`‰æ€”õ
+	//=================================================================================
 	pRenderer->EnterDrawing();
 	pBackBuff->OpenBackBuffer(CLEAR_COLOR);
 	pDSBuff->OpenDSBuffer();
 	pRenderer->SetRenderTargets(pBackBuff->GetHeapHandle(), pDSBuff->GetHeapHandle());
+	//=================================================================================
+	//•`‰æ
+	//=================================================================================
+	
 
-	pGameObject->Draw();
 
+	//=================================================================================
+	//•`‰æI—¹
+	//=================================================================================
 	pBackBuff->CloseBackBuffer();
 	pRenderer->ExitDrawing();
+	//=================================================================================
 }

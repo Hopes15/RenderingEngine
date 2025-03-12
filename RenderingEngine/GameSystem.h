@@ -31,8 +31,6 @@ private:
 	class HDL_BackBuffer*		  pBackBuff = nullptr;
 	class HDL_DepthStencilBuffer* pDSBuff   = nullptr;
 
-	class GameObject*	  pGameObject = nullptr;
-
 	bool mActivation;
 };
 

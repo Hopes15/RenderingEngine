@@ -15,12 +15,12 @@ CameraComponent::~CameraComponent()
 void CameraComponent::Init(D3D12_CPU_DESCRIPTOR_HANDLE heapHandle)
 {
 	//ViewProjectionçsóÒ(3D)
-	XMFLOAT3 pos   (0, 120, -150);
-	XMFLOAT3 target(0, 70, 0);
-	XMFLOAT3 up    (0, 1, 0);
+	XMVECTOR eye    = { 0, 0, -10 };
+	XMVECTOR target = { 0, 0, 0 };
+	XMVECTOR up     = { 0, 1, 0 };
 
 	//ç¿ïWånÇÃèâä˙âª
-	mViewProj.view = XMMatrixLookAtLH(XMLoadFloat3(&pos), XMLoadFloat3(&target), XMLoadFloat3(&up));
+	mViewProj.view = XMMatrixLookAtLH(eye, target, up);
 	mViewProj.proj = XMMatrixPerspectiveFovLH(
 		XM_PIDIV2,
 		static_cast<float>(pRenderer->WINDOW_WIDTH) / static_cast<float>(pRenderer->WINDOW_HEIGHT),

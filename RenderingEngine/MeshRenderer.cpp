@@ -64,6 +64,7 @@ void MeshRenderer::Init()
 
 	//PSOを作成
 	pPSO = new HDL_PSO(inputLayout, pRootSig->GetPointerOfRootSignature());
+	//TODO:読み取ったモデルデータからシェーダーを指定できるようにする
 	pPSO->SetVS(L"GameObject_VS.hlsl");
 	pPSO->SetPS(L"GameObject_PS.hlsl");
 	pPSO->CreatePipeline();
