@@ -136,7 +136,6 @@
     <ClCompile Include="GameSystem.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -146,7 +145,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameSystem.h" />
     <ClInclude Include="Loader.h" />
-    <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="Transform.h" />

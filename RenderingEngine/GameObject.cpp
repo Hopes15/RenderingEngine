@@ -42,8 +42,6 @@ void GameObject::LoadComponents()
 {
 	pMesh = new Mesh();
 	pMesh->Init(L"Assets/Alicia/FBX/Alicia_solid_Unity.FBX");
-	//pMesh->Init(L"Assets/FREE-Glass_ver1_788polygon.fbx");
-	//pMesh->Init(L"Assets/uploads_files_5718873_Volkswagen+Beetle+1963.fbx");
 
 	//DescriptorHeap
 	//For CBuff

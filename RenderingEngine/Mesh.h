@@ -15,11 +15,11 @@ public:
 
 	void Init(const wchar_t* fileName);
 
-	inline std::vector<MeshData> GetMeshDatas() { return mMeshDatas; }
+	std::vector<MeshData> GetMeshDatas() { return mMeshDatas; }
 
-	inline std::vector<class HDL_VertexBuffer*> GetVertexBuffs() { return mVertexBuffs; }
+	std::vector<class HDL_VertexBuffer*> GetVertexBuffs() { return mVertexBuffs; }
 
-	inline std::vector<class HDL_IndexBuffer*> GetIndexBuffs() { return mIndexBuffs; }
+	std::vector<class HDL_IndexBuffer*> GetIndexBuffs() { return mIndexBuffs; }
 
 private:
 	std::vector<MeshData> mMeshDatas;
