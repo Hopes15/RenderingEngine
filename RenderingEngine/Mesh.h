@@ -2,6 +2,10 @@
 #include <DirectXMath.h>
 #include <vector>
 #include <string>
+#include "HDL_VertexBuffer.h"
+#include "HDL_IndexBuffer.h"
+#include "HDL_ConstantBuffer.h"
+#include "HDL_Texture.h"
 
 using namespace DirectX;
 
@@ -12,19 +16,45 @@ public:
 
 	~Mesh();
 
-	void Init(const wchar_t* fileName);
+	void Load(const char* fileName);
 
-	//std::vector<MeshData> GetMeshDatas() { return mMeshDatas; }
-
-	std::vector<class HDL_VertexBuffer*> GetVertexBuffs() { return mVertexBuffs; }
-
-	std::vector<class HDL_IndexBuffer*> GetIndexBuffs() { return mIndexBuffs; }
+	void Create(D3D12_CPU_DESCRIPTOR_HANDLE heapHandle);
 
 private:
-	//std::vector<MeshData> mMeshDatas;
-	std::vector<class HDL_VertexBuffer*> mVertexBuffs;
-	std::vector<class HDL_IndexBuffer*>  mIndexBuffs;
+	struct Vertex
+	{
+		XMFLOAT3 pos;
+		XMFLOAT3 normal;
+		XMFLOAT2 uv;
+	};
 
-	class HDL_Renderer*		pRenderer	= nullptr;
+	struct Material
+	{
+		XMFLOAT4	ambient;
+		XMFLOAT4	diffuse;
+		XMFLOAT4	specular;
+	};
+
+	struct MeshData
+	{
+		UINT				  numVertices;
+		std::vector<Vertex>   vertices;
+		Material		      material;
+		std::wstring		  fileName;
+	};
+
+	UINT mNumParts;
+
+	std::vector<MeshData>			 mMeshData = {};
+	std::vector<HDL_VertexBuffer*>   mVertexBuffs;
+	std::vector<HDL_ConstantBuffer*> mCBuffs;
+	std::vector<HDL_TextureBuffer*>  mTexBuffs;
+
+public:
+	UINT GetNumParts() const { return mNumParts; }
+
+	std::vector<MeshData>&           GetMeshData()	   { return mMeshData; }
+	std::vector<HDL_VertexBuffer*>&  GetVertexBuffs()  { return mVertexBuffs; }
+	std::vector<HDL_TextureBuffer*>& GetTextureBuffs() { return mTexBuffs; }
 };
 

@@ -1,21 +1,24 @@
 #pragma once
 
+class Mesh;
+class HDL_DescriptorHeap;
+class HDL_RootSignature;
+class HDL_PSO;
+class HDL_Renderer;
 class MeshRenderer
 {
 public:
-	MeshRenderer(class HDL_DescriptorHeap** descHeap, class Mesh* mesh);
+	MeshRenderer(Mesh* mesh, HDL_DescriptorHeap* descHeap);
 
 	~MeshRenderer();
-
-	void Init();
 
 	void Draw();
 
 private:
-	class HDL_RootSignature*   pRootSig  = nullptr;
-	class HDL_PSO*			   pPSO	     = nullptr;
-	class HDL_Renderer*        pRenderer = nullptr;
-	class HDL_DescriptorHeap** pDescHeap = nullptr;
-	class Mesh*				   pMesh	 = nullptr;
+	Mesh* m_pMesh;
+	HDL_DescriptorHeap* m_pDescHeap;
+	HDL_RootSignature* m_pRootSig;
+	HDL_PSO* m_pPSO;
+	HDL_Renderer* m_pRenderer;
 };
 

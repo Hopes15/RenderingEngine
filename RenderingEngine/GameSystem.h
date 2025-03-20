@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class GameSystem
 {
@@ -13,6 +14,10 @@ public:
 
 	void Quit();
 
+	void AddModel(class Model* model);
+
+	void RemoveModel(class Model* model);
+
 private:
 	void Input();
 
@@ -20,10 +25,14 @@ private:
 
 	void Output();
 
+	void Load();
+
+	void UnLoad();
+
 private:
 	const unsigned int WIDTH;
 	const unsigned int HEIGHT;
-	const float		   CLEAR_COLOR[4] = { 0.5f, 0.5f, 0.5f, 1.0f };
+	const float		   CLEAR_COLOR[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	const float		   FIXED_DELTA_TIME;
 
 	class HDL_Window*			  pWindow	= nullptr;
@@ -32,5 +41,9 @@ private:
 	class HDL_DepthStencilBuffer* pDSBuff   = nullptr;
 
 	bool mActivation;
+
+	std::vector<class Model*> models;
+
+	class Demo* demo = nullptr;
 };
 

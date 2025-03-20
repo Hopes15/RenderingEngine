@@ -3,8 +3,17 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameSystem.cpp" />
-    <ClCompile Include="GameObject.cpp">
-      <Filter>GameObject</Filter>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Demo.cpp">
+      <Filter>Models</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Components</Filter>
@@ -12,20 +21,23 @@
     <ClCompile Include="MeshRenderer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Loader.cpp">
+    <ClCompile Include="Converter.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameSystem.h" />
-    <ClInclude Include="GameObject.h">
-      <Filter>GameObject</Filter>
+    <ClInclude Include="Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Demo.h">
+      <Filter>Models</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Components</Filter>
@@ -33,36 +45,36 @@
     <ClInclude Include="MeshRenderer.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Loader.h">
+    <ClInclude Include="Converter.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="GameObject">
-      <UniqueIdentifier>{e568e8c5-a3c6-41ef-89b0-68f9555b78de}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{ff816f16-db64-420f-8380-30b8d3429746}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules">
+    <Filter Include="HLSL">
+      <UniqueIdentifier>{9075a5b6-185c-41da-88a4-ddb9f8a9b38f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models">
       <UniqueIdentifier>{22ed6a28-bf21-4af1-83d1-7695452c00ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{167069ef-5db9-49c1-8ee3-fd60704b7da8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="GameObject_VS.hlsl">
-      <Filter>GameObject</Filter>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Model_VS.hlsl">
+      <Filter>HLSL</Filter>
     </FxCompile>
-    <FxCompile Include="GameObject_PS.hlsl">
-      <Filter>GameObject</Filter>
+    <FxCompile Include="Model_PS.hlsl">
+      <Filter>HLSL</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Text Include="Assets\Alicia.txt" />
   </ItemGroup>
 </Project>

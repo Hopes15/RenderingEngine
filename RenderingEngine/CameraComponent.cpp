@@ -15,8 +15,9 @@ CameraComponent::~CameraComponent()
 void CameraComponent::Init(D3D12_CPU_DESCRIPTOR_HANDLE heapHandle)
 {
 	//ViewProjectionçsóÒ(3D)
-	XMVECTOR eye    = { 0, 0, -10 };
-	XMVECTOR target = { 0, 0, 0 };
+	float h = 1.7f;
+	XMVECTOR eye    = { 0, h, -3 };
+	XMVECTOR target = { 0, h, 0 };
 	XMVECTOR up     = { 0, 1, 0 };
 
 	//ç¿ïWånÇÃèâä˙âª

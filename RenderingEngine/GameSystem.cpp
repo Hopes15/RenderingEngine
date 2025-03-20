@@ -3,6 +3,8 @@
 #include "HDL_Window.h"
 #include "HDL_BackBuffer.h"
 #include "HDL_DepthStencilBuffer.h"
+#include "Model.h"
+#include "Demo.h"
 
 GameSystem::GameSystem() :
 	WIDTH(1920),
@@ -14,6 +16,7 @@ GameSystem::GameSystem() :
 
 GameSystem::~GameSystem()
 {
+	delete demo;
 	delete pDSBuff;
 	delete pBackBuff;
 	pRenderer->Destroy();
@@ -35,7 +38,8 @@ void GameSystem::Initialize()
 	//ê[ìxÉoÉbÉtÉ@ÇÃçÏê¨
 	pDSBuff = new HDL_DepthStencilBuffer();
 
-	//GameObjectê∂ê¨
+	//Load
+	Load();
 }
 
 void GameSystem::ExcuteSystem()
@@ -52,6 +56,7 @@ void GameSystem::ExcuteSystem()
 
 void GameSystem::Quit()
 {
+	UnLoad();
 	pWindow->CloseWindow();
 }
 
@@ -61,6 +66,12 @@ void GameSystem::Input()
 
 void GameSystem::Update()
 {
+	demo->Update();
+
+	//for (auto model : models)
+	//{
+	//	model->Update(0.02f);
+	//}
 }
 
 void GameSystem::Output()
@@ -75,7 +86,12 @@ void GameSystem::Output()
 	//ï`âÊ
 	//=================================================================================
 	
+	demo->Draw();
 
+	//for (auto model : models)
+	//{
+	//	model->Draw();
+	//}
 
 	//=================================================================================
 	//ï`âÊèIóπ
@@ -83,4 +99,29 @@ void GameSystem::Output()
 	pBackBuff->CloseBackBuffer();
 	pRenderer->ExitDrawing();
 	//=================================================================================
+}
+
+void GameSystem::Load()
+{
+	//Modelê∂ê¨
+	demo = new Demo;
+}
+
+void GameSystem::UnLoad()
+{
+	//while (!models.empty())
+	//{
+	//	delete models.back();
+	//}
+}
+
+void GameSystem::AddModel(Model* model)
+{
+	models.emplace_back(model);
+}
+
+void GameSystem::RemoveModel(Model* model)
+{
+	auto iter = std::find(models.begin(), models.end(), model);
+	models.erase(iter);
 }
