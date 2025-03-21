@@ -4,7 +4,7 @@
 #include "HDL_BackBuffer.h"
 #include "HDL_DepthStencilBuffer.h"
 #include "HDL_Input.h"
-#include "Demo.h"
+#include "Alicia.h"
 
 GameSystem::GameSystem() :
 	WIDTH(1920),
@@ -16,7 +16,7 @@ GameSystem::GameSystem() :
 
 GameSystem::~GameSystem()
 {
-	delete demo;
+	delete alicia;
 	pInput->Destroy();
 	delete pDSBuff;
 	delete pBackBuff;
@@ -65,12 +65,12 @@ void GameSystem::Quit()
 
 void GameSystem::Input()
 {
-	demo->Input();
+	alicia->Input();
 }
 
 void GameSystem::Update()
 {
-	demo->Update();
+	alicia->Update();
 }
 
 void GameSystem::Output()
@@ -85,7 +85,7 @@ void GameSystem::Output()
 	//ï`âÊ
 	//=================================================================================
 	
-	demo->Draw();
+	alicia->Draw();
 
 	//=================================================================================
 	//ï`âÊèIóπ
@@ -98,5 +98,5 @@ void GameSystem::Output()
 void GameSystem::Load()
 {
 	//Modelê∂ê¨
-	demo = new Demo;
+	alicia = new Alicia;
 }

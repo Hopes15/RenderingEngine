@@ -133,7 +133,7 @@
   <ItemGroup>
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Converter.cpp" />
-    <ClCompile Include="Demo.cpp" />
+    <ClCompile Include="Alicia.cpp" />
     <ClCompile Include="GameSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -143,7 +143,7 @@
   <ItemGroup>
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Converter.h" />
-    <ClInclude Include="Demo.h" />
+    <ClInclude Include="Alicia.h" />
     <ClInclude Include="GameSystem.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRenderer.h" />

@@ -1,12 +1,12 @@
 #pragma once
 #include <cmath>
 
-class Demo
+class Alicia
 {
 public:
-	Demo();
+	Alicia();
 
-	~Demo();
+	~Alicia();
 
 	void Update();
 
