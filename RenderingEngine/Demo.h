@@ -1,0 +1,49 @@
+#pragma once
+#include <cmath>
+
+class Demo
+{
+public:
+	Demo();
+
+	~Demo();
+
+	void Update();
+
+	void Input();
+
+	void Draw();
+
+private:
+	void Init();
+
+	class HDL_DescriptorHeap* m_pDescHeap   = nullptr;
+	class HDL_Input*		  m_pInput      = nullptr;
+	class Transform*		  m_pTransform  = nullptr;
+	class CameraComponent*    m_pCam	    = nullptr;
+	class Mesh*				  m_pMesh	    = nullptr;
+	class MeshRenderer*       m_pMRendrerer = nullptr;
+
+	float erapsed = 0.0f;
+	float radian  = 0.0f;
+	float moveSpeed = 1.0f;
+
+	//const char* fileName = "Assets/Alicia/FBX/Alicia_solid_Unity.FBX";
+	const char* textFile = "Assets/Alicia_TGA/Alicia.txt";
+
+	//const char* fileName = "Assets/Volkswagen/uploads_files_5718873_Volkswagen+Beetle+1963.fbx";
+	//const char* textFile = "Assets/Volkswagen/Volkswagen.txt";
+	
+	//const char* fileName = "Assets/Tree/Tree.fbx";
+	//const char* textFile = "Assets/Tree/Tree.txt";
+
+	//Status
+	float mSpeed = 0.05f;
+
+	//Input
+	bool mInput_W = false;
+	bool mInput_A = false;
+	bool mInput_S = false;
+	bool mInput_D = false;
+};
+

@@ -36,24 +36,17 @@ void GameObject::Update(float deltaTime)
 void GameObject::Draw()
 {
 	pMeshRenderer->Draw();
-	pMesh->Draw();
 }
 
 void GameObject::LoadComponents()
 {
 	pMesh = new Mesh();
 	pMesh->Init(L"Assets/Alicia/FBX/Alicia_solid_Unity.FBX");
-	//pMesh->Init(L"Assets/FREE-Glass_ver1_788polygon.fbx");
-	//pMesh->Init(L"Assets/uploads_files_5718873_Volkswagen+Beetle+1963.fbx");
 
 	//DescriptorHeap
 	//For CBuff
 	pDescHeaps[0] = new HDL_DescriptorHeap();
 	pDescHeaps[0]->CreateAsCBV_SRV_UAV(2);
-
-	//For SResource
-	pDescHeaps[1] = new HDL_DescriptorHeap();
-	pDescHeaps[1]->CreateAsCBV_SRV_UAV(1);
 
 	auto heapHandle = pDescHeaps[0]->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
 
@@ -70,6 +63,6 @@ void GameObject::LoadComponents()
 	pCam->Init(heapHandle);
 
 	//MeshRenderer
-	pMeshRenderer = new MeshRenderer(pDescHeaps[0]);
+	pMeshRenderer = new MeshRenderer(pDescHeaps, pMesh);
 	pMeshRenderer->Init();
 }

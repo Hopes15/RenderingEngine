@@ -3,7 +3,9 @@
 #include "HDL_Window.h"
 #include "HDL_BackBuffer.h"
 #include "HDL_DepthStencilBuffer.h"
-#include "GameObject.h"
+#include "HDL_Input.h"
+#include "Model.h"
+#include "Demo.h"
 
 GameSystem::GameSystem() :
 	WIDTH(1920),
@@ -15,7 +17,8 @@ GameSystem::GameSystem() :
 
 GameSystem::~GameSystem()
 {
-	delete pGameObject;
+	delete demo;
+	pInput->Destroy();
 	delete pDSBuff;
 	delete pBackBuff;
 	pRenderer->Destroy();
@@ -37,8 +40,11 @@ void GameSystem::Initialize()
 	//深度バッファの作成
 	pDSBuff = new HDL_DepthStencilBuffer();
 
-	//GameObject生成
-	pGameObject = new GameObject();
+	//Inputインスタンスを生成
+	HDL_Input::Create(pWindow->GetWindowHandler());
+
+	//Load
+	Load();
 }
 
 void GameSystem::ExcuteSystem()
@@ -60,22 +66,43 @@ void GameSystem::Quit()
 
 void GameSystem::Input()
 {
+	demo->Input();
 }
 
 void GameSystem::Update()
 {
-	pGameObject->Update(FIXED_DELTA_TIME);
+	demo->Update();
 }
 
 void GameSystem::Output()
 {
+	//描画準備
+	//=================================================================================
 	pRenderer->EnterDrawing();
 	pBackBuff->OpenBackBuffer(CLEAR_COLOR);
 	pDSBuff->OpenDSBuffer();
 	pRenderer->SetRenderTargets(pBackBuff->GetHeapHandle(), pDSBuff->GetHeapHandle());
+	//=================================================================================
+	//描画
+	//=================================================================================
+	
+	demo->Draw();
 
-	pGameObject->Draw();
+	//for (auto model : models)
+	//{
+	//	model->Draw();
+	//}
 
+	//=================================================================================
+	//描画終了
+	//=================================================================================
 	pBackBuff->CloseBackBuffer();
 	pRenderer->ExitDrawing();
+	//=================================================================================
+}
+
+void GameSystem::Load()
+{
+	//Model生成
+	demo = new Demo;
 }

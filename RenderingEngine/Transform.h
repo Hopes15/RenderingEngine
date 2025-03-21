@@ -1,6 +1,5 @@
 #pragma once
 #include <DirectXMath.h>
-#include <assimp/Importer.hpp>
 
 using namespace DirectX;
 
