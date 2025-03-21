@@ -69,24 +69,6 @@ void Mesh::Load(const char* fileName)
 	}
 
 	file.close();
-	
-	/*for (UINT i = 0; i < 1; i++)
-	{
-		for (UINT j = 0; j < mMeshData[i].numVertices; j++)
-		{
-			std::cout << mMeshData[i].vertices[j].pos.x << mMeshData[i].vertices[j].pos.y << mMeshData[i].vertices[j].pos.z;
-			std::cout << mMeshData[i].vertices[j].normal.x << mMeshData[i].vertices[j].normal.y << mMeshData[i].vertices[j].normal.z;
-			std::cout << mMeshData[i].vertices[j].uv.x << mMeshData[i].vertices[j].uv.y << std::endl;;
-		}
-
-		auto& material = mMeshData[i].material;
-		std::cout << material.ambient.x << material.ambient.y << material.ambient.z << material.ambient.w << std::endl;
-		std::cout << material.diffuse.x << material.diffuse.y << material.diffuse.z << material.diffuse.w << std::endl;
-		std::cout << material.specular.x << material.specular.y << material.specular.z << material.specular.w << std::endl;
-
-		std::cout << ConvertWString(mMeshData[i].fileName);
-	}*/
-
 }
 
 void Mesh::Create(D3D12_CPU_DESCRIPTOR_HANDLE heapHandle)
@@ -99,6 +81,7 @@ void Mesh::Create(D3D12_CPU_DESCRIPTOR_HANDLE heapHandle)
 	mCBuffs.resize(mNumParts);
 	mTexBuffs.resize(mNumParts);
 
+	//メッシュごとにバッファ作成
 	for (UINT i = 0; i < mNumParts; i++)
 	{
 		//VertexBuffer
