@@ -15,10 +15,10 @@ public:
 	void Draw();
 
 private:
-	Mesh* m_pMesh;
-	HDL_DescriptorHeap* m_pDescHeap;
-	HDL_RootSignature* m_pRootSig;
-	HDL_PSO* m_pPSO;
-	HDL_Renderer* m_pRenderer;
+	Mesh*				m_pMesh			= nullptr;
+	HDL_DescriptorHeap* m_pDescHeap		= nullptr;
+	HDL_RootSignature*	m_pRootSig		= nullptr;
+	HDL_PSO*			m_pPSO			= nullptr;
+	HDL_Renderer*		m_pRenderer		= nullptr;
 };
 

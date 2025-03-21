@@ -28,16 +28,11 @@ private:
 	float radian  = 0.0f;
 	float moveSpeed = 1.0f;
 
+	//FILE
 	//const char* fileName = "Assets/Alicia/FBX/Alicia_solid_Unity.FBX";
 	const char* textFile = "Assets/Alicia_TGA/Alicia.txt";
 
-	//const char* fileName = "Assets/Volkswagen/uploads_files_5718873_Volkswagen+Beetle+1963.fbx";
-	//const char* textFile = "Assets/Volkswagen/Volkswagen.txt";
-	
-	//const char* fileName = "Assets/Tree/Tree.fbx";
-	//const char* textFile = "Assets/Tree/Tree.txt";
-
-	//Status
+	//Parameters
 	float mSpeed = 0.05f;
 
 	//Input
