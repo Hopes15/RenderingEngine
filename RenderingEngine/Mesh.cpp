@@ -12,8 +12,9 @@ Mesh::~Mesh()
 {
 	for (unsigned int i = 0; i < mNumParts; i++)
 	{
-		delete mVertexBuffs[i];
+		delete mTexBuffs[i];
 		delete mCBuffs[i];
+		delete mVertexBuffs[i];
 	}
 }
 
@@ -53,10 +54,10 @@ void Mesh::Load(const char* fileName)
 		Material mat = {};
 		file >> dataType;
 		assert(dataType == "material");
+
 		file >> mat.ambient.x  >> mat.ambient.y  >> mat.ambient.z >> mat.ambient.w;
 		file >> mat.diffuse.x  >> mat.diffuse.y  >> mat.diffuse.z >> mat.diffuse.w;
 		file >> mat.specular.x >> mat.specular.y >> mat.specular.z >> mat.specular.w;
-
 		mMeshData[i].material = mat;
 
 		//Texture
@@ -99,7 +100,9 @@ void Mesh::Create(D3D12_CPU_DESCRIPTOR_HANDLE heapHandle)
 		heapHandle.ptr += incSize;
 
 		//Texture
+#ifdef _DEBUG
 		std::cout << ConvertWString(mMeshData[i].fileName) << std::endl;
+#endif
 		HDL_Texture texture(mMeshData[i].fileName.c_str());
 
 		mTexBuffs[i] = new HDL_TextureBuffer(texture.GetMetaData(), texture.GetImage(), heapHandle);

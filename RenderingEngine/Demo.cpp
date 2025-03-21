@@ -29,7 +29,7 @@ Demo::~Demo()
 	delete m_pMesh;
 	delete m_pCam;
 	delete m_pTransform;
-	delete[] m_pDescHeap;
+	delete m_pDescHeap;
 }
 
 void Demo::Update()
@@ -62,9 +62,9 @@ void Demo::Init()
 	auto incSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 
 	//Create DescHeap WVP
-	m_pDescHeap = new HDL_DescriptorHeap[2];
-	m_pDescHeap[0].CreateAsCBV_SRV_UAV(2);
-	auto handle = m_pDescHeap[0].GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
+	m_pDescHeap = new HDL_DescriptorHeap;
+	m_pDescHeap->CreateAsCBV_SRV_UAV(256);
+	auto handle = m_pDescHeap->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
 
 	//Transform
 	m_pTransform = new Transform;
@@ -75,10 +75,7 @@ void Demo::Init()
 	//Cam
 	m_pCam = new CameraComponent;
 	m_pCam->Init(handle);
-
-	//Create DescHeap MESH
-	m_pDescHeap[1].CreateAsCBV_SRV_UAV(256);
-	handle = m_pDescHeap[1].GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
+	handle.ptr += incSize;
 
 	//Mesh
 	m_pMesh = new Mesh();
