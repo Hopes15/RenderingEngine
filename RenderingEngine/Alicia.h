@@ -1,5 +1,4 @@
 #pragma once
-#include <cmath>
 
 class Alicia
 {
@@ -29,7 +28,6 @@ private:
 	float moveSpeed = 1.0f;
 
 	//FILE
-	//const char* fileName = "Assets/Alicia/FBX/Alicia_solid_Unity.FBX";
 	const char* textFile = "Assets/Alicia_TGA/Alicia.txt";
 
 	//Parameters

@@ -5,6 +5,8 @@
 #include "HDL_DepthStencilBuffer.h"
 #include "HDL_Input.h"
 #include "Alicia.h"
+#include "Converter.h"
+#include "Volkswagen.h"
 
 GameSystem::GameSystem() :
 	WIDTH(1920),
@@ -16,6 +18,7 @@ GameSystem::GameSystem() :
 
 GameSystem::~GameSystem()
 {
+	delete wagen;
 	delete alicia;
 	pInput->Destroy();
 	delete pDSBuff;
@@ -41,6 +44,12 @@ void GameSystem::Initialize()
 
 	//Inputインスタンスを生成
 	HDL_Input::Create(pWindow->GetWindowHandler());
+
+#if 0
+	//コンバートする時だけ
+	Converter converter;
+	converter.ConvertFBX(fileName, textFile, scale, scale, scale, 0, 1, 2);
+#endif
 
 	//Load
 	Load();
@@ -86,6 +95,7 @@ void GameSystem::Output()
 	//=================================================================================
 	
 	alicia->Draw();
+	wagen->Draw();
 
 	//=================================================================================
 	//描画終了
@@ -99,4 +109,5 @@ void GameSystem::Load()
 {
 	//Model生成
 	alicia = new Alicia;
+	wagen = new Volkswagen;
 }

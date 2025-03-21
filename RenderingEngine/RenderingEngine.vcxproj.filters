@@ -9,9 +9,6 @@
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Demo.cpp">
-      <Filter>Models</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -20,6 +17,12 @@
     </ClCompile>
     <ClCompile Include="Converter.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Alicia.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Volkswagen.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -30,9 +33,6 @@
     <ClInclude Include="CameraComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Demo.h">
-      <Filter>Models</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -42,6 +42,12 @@
     <ClInclude Include="Converter.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Alicia.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Volkswagen.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -50,15 +56,12 @@
     <Filter Include="HLSL">
       <UniqueIdentifier>{9075a5b6-185c-41da-88a4-ddb9f8a9b38f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Models">
-      <UniqueIdentifier>{22ed6a28-bf21-4af1-83d1-7695452c00ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Modules">
       <UniqueIdentifier>{167069ef-5db9-49c1-8ee3-fd60704b7da8}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Filter Include="Objects">
+      <UniqueIdentifier>{22ed6a28-bf21-4af1-83d1-7695452c00ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Model_VS.hlsl">
@@ -67,5 +70,8 @@
     <FxCompile Include="Model_PS.hlsl">
       <Filter>HLSL</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TODO.txt" />
   </ItemGroup>
 </Project>
