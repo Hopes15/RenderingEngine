@@ -1,4 +1,4 @@
-#include "Demo.h"
+#include "Alicia.h"
 #include "GameSystem.h"
 #include "Transform.h"
 #include "CameraComponent.h"
@@ -10,7 +10,7 @@
 #include "Converter.h"
 
 
-Demo::Demo() : m_pInput(HDL_Input::GetInstance())
+Alicia::Alicia() : m_pInput(HDL_Input::GetInstance())
 {
 	float scale = 0.01f;
 
@@ -23,7 +23,7 @@ Demo::Demo() : m_pInput(HDL_Input::GetInstance())
 	Init();
 }
 
-Demo::~Demo()
+Alicia::~Alicia()
 {
 	delete m_pMRendrerer;
 	delete m_pMesh;
@@ -32,7 +32,7 @@ Demo::~Demo()
 	delete m_pDescHeap;
 }
 
-void Demo::Update()
+void Alicia::Update()
 {
 	if      (mInput_W) m_pTransform->mPosition.z += mSpeed;
 	else if (mInput_S) m_pTransform->mPosition.z -= mSpeed;
@@ -43,7 +43,7 @@ void Demo::Update()
 	m_pTransform->Update();
 }
 
-void Demo::Input()
+void Alicia::Input()
 {
 	mInput_W = m_pInput->GetKey(DIK_W);
 	mInput_A = m_pInput->GetKey(DIK_A);
@@ -51,12 +51,12 @@ void Demo::Input()
 	mInput_D = m_pInput->GetKey(DIK_D);
 }
 
-void Demo::Draw()
+void Alicia::Draw()
 {
 	m_pMRendrerer->Draw();
 }
 
-void Demo::Init()
+void Alicia::Init()
 {
 	auto device  = HDL_Renderer::GetInstance()->GetDevice();
 	auto incSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);

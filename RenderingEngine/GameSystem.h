@@ -39,6 +39,6 @@ private:
 
 	std::vector<class Model*> models;
 
-	class Demo* demo = nullptr;
+	class Alicia* alicia = nullptr;
 };
 
