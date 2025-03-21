@@ -32,13 +32,19 @@ private:
 	class HDL_Window*			  pWindow	= nullptr;
 	class HDL_Renderer*			  pRenderer = nullptr;
 	class HDL_BackBuffer*		  pBackBuff = nullptr;
-	class HDL_DepthStencilBuffer* pDSBuff   = nullptr;
-	class HDL_Input*			  pInput    = nullptr;
+	class HDL_DepthStencilBuffer* pDSBuff	= nullptr;
+	class HDL_Input*			  pInput	= nullptr;
 
 	bool mActivation;
 
 	std::vector<class Model*> models;
 
-	class Alicia* alicia = nullptr;
+	//FILE
+	const char* fileName = "";
+	const char* textFile = "";
+
+	//Models
+	class Alicia*     alicia = nullptr;
+	class Volkswagen* wagen  = nullptr;
 };
 
