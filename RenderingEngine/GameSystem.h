@@ -14,10 +14,6 @@ public:
 
 	void Quit();
 
-	void AddModel(class Model* model);
-
-	void RemoveModel(class Model* model);
-
 private:
 	void Input();
 
@@ -26,8 +22,6 @@ private:
 	void Output();
 
 	void Load();
-
-	void UnLoad();
 
 private:
 	const unsigned int WIDTH;
@@ -39,6 +33,7 @@ private:
 	class HDL_Renderer*			  pRenderer = nullptr;
 	class HDL_BackBuffer*		  pBackBuff = nullptr;
 	class HDL_DepthStencilBuffer* pDSBuff   = nullptr;
+	class HDL_Input*			  pInput    = nullptr;
 
 	bool mActivation;
 

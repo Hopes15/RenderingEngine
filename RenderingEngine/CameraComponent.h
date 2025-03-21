@@ -19,6 +19,7 @@ private:
 	{
 		XMMATRIX view;
 		XMMATRIX proj;
+		XMFLOAT3 eye;
 	};
 
 	Matrix mViewProj = {};

@@ -17,13 +17,19 @@ cbuffer b2 : register(b2)
 
 float4 main(Input i) : SV_TARGET
 {
-    //TODO : ƒ}ƒeƒŠƒAƒ‹‚ð‚µ‚Á‚©‚è‚Æ”½‰f‚³‚¹‚é
+    ////Light
+    //float3 light = normalize(float3(1, -1, 1));
     
-    float4 LightPos   = float4(0, -0.5, -0.5, 0);
-    float  brightness = max(dot(i.normal, LightPos), 0);
-    float4 _Diffuse   = saturate(float4(ambient.xyz + diffuse.xyz * brightness, diffuse.a));
+    //float brightness = dot(-light, i.normal.xyz);
+    
+    ////Tex
+    //float4 texColor = tex.Sample(smp, i.uv);
+    
+    //return float4(brightness, brightness, brightness, 1) * diffuse * texColor;
+    
+    float4 LightPos = float4(0, -0.5, -0.5, 0);
+    float brightness = max(dot(i.normal, LightPos), 0);
+    float4 _Diffuse = saturate(float4(ambient.xyz + diffuse.xyz * brightness, diffuse.a));
     
     return tex.Sample(smp, i.uv) * _Diffuse;
-    //return tex.Sample(smp, i.uv);
-    //return float4(i.uv, 0, 1);
 }

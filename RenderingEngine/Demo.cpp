@@ -6,9 +6,11 @@
 #include "MeshRenderer.h"
 #include "HDL_DescriptorHeap.h"
 #include "HDL_Renderer.h"
+#include "HDL_Input.h"
 #include "Converter.h"
 
-Demo::Demo()
+
+Demo::Demo() : m_pInput(HDL_Input::GetInstance())
 {
 	float scale = 0.01f;
 
@@ -32,11 +34,21 @@ Demo::~Demo()
 
 void Demo::Update()
 {
-	radian += 0.01f;
-	erapsed += sinf(radian) * 0.1f;
+	if      (mInput_W) m_pTransform->mPosition.z += mSpeed;
+	else if (mInput_S) m_pTransform->mPosition.z -= mSpeed;
 
-	m_pTransform->SetRotation(0.0f, radian, 0.0f);
+	if      (mInput_A) m_pTransform->mPosition.x -= mSpeed;
+	else if (mInput_D) m_pTransform->mPosition.x += mSpeed;
+
 	m_pTransform->Update();
+}
+
+void Demo::Input()
+{
+	mInput_W = m_pInput->GetKey(DIK_W);
+	mInput_A = m_pInput->GetKey(DIK_A);
+	mInput_S = m_pInput->GetKey(DIK_S);
+	mInput_D = m_pInput->GetKey(DIK_D);
 }
 
 void Demo::Draw()
@@ -56,7 +68,7 @@ void Demo::Init()
 
 	//Transform
 	m_pTransform = new Transform;
-	//m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
+	m_pTransform->SetRotation(0, 3.14f, 0);
 	m_pTransform->Init(handle);
 	handle.ptr += incSize;
 	 

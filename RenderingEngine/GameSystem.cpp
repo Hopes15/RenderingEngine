@@ -3,6 +3,7 @@
 #include "HDL_Window.h"
 #include "HDL_BackBuffer.h"
 #include "HDL_DepthStencilBuffer.h"
+#include "HDL_Input.h"
 #include "Model.h"
 #include "Demo.h"
 
@@ -17,6 +18,7 @@ GameSystem::GameSystem() :
 GameSystem::~GameSystem()
 {
 	delete demo;
+	pInput->Destroy();
 	delete pDSBuff;
 	delete pBackBuff;
 	pRenderer->Destroy();
@@ -38,6 +40,9 @@ void GameSystem::Initialize()
 	//深度バッファの作成
 	pDSBuff = new HDL_DepthStencilBuffer();
 
+	//Inputインスタンスを生成
+	HDL_Input::Create(pWindow->GetWindowHandler());
+
 	//Load
 	Load();
 }
@@ -56,22 +61,17 @@ void GameSystem::ExcuteSystem()
 
 void GameSystem::Quit()
 {
-	UnLoad();
 	pWindow->CloseWindow();
 }
 
 void GameSystem::Input()
 {
+	demo->Input();
 }
 
 void GameSystem::Update()
 {
 	demo->Update();
-
-	//for (auto model : models)
-	//{
-	//	model->Update(0.02f);
-	//}
 }
 
 void GameSystem::Output()
@@ -105,23 +105,4 @@ void GameSystem::Load()
 {
 	//Model生成
 	demo = new Demo;
-}
-
-void GameSystem::UnLoad()
-{
-	//while (!models.empty())
-	//{
-	//	delete models.back();
-	//}
-}
-
-void GameSystem::AddModel(Model* model)
-{
-	models.emplace_back(model);
-}
-
-void GameSystem::RemoveModel(Model* model)
-{
-	auto iter = std::find(models.begin(), models.end(), model);
-	models.erase(iter);
 }

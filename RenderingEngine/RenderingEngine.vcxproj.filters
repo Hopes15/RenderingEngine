@@ -9,9 +9,6 @@
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Models</Filter>
-    </ClCompile>
     <ClCompile Include="Demo.cpp">
       <Filter>Models</Filter>
     </ClCompile>
@@ -32,9 +29,6 @@
     </ClInclude>
     <ClInclude Include="CameraComponent.h">
       <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Models</Filter>
     </ClInclude>
     <ClInclude Include="Demo.h">
       <Filter>Models</Filter>
@@ -73,8 +67,5 @@
     <FxCompile Include="Model_PS.hlsl">
       <Filter>HLSL</Filter>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Assets\Alicia.txt" />
   </ItemGroup>
 </Project>
