@@ -4,7 +4,6 @@
 #include "HDL_BackBuffer.h"
 #include "HDL_DepthStencilBuffer.h"
 #include "HDL_Input.h"
-#include "Model.h"
 #include "Demo.h"
 
 GameSystem::GameSystem() :
