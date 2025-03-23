@@ -146,6 +146,7 @@
     <ClInclude Include="Converter.h" />
     <ClInclude Include="Alicia.h" />
     <ClInclude Include="GameSystem.h" />
+    <ClInclude Include="Lights.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="Transform.h" />

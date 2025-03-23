@@ -13,16 +13,15 @@ MeshRenderer::MeshRenderer(Mesh* mesh, HDL_DescriptorHeap* descHeap) :
 	//ROOT SIGNATURE
 	{
 		//Descriptor Ranges
-		CD3DX12_DESCRIPTOR_RANGE descRanges[4] = {};
-		descRanges[0].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, /*numDescs = */ 1, /*slot = */ 0); //WorldMat
-		descRanges[1].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, /*numDescs = */ 1, /*slot = */ 1); //ViewProjMat
-		descRanges[2].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, /*numDescs = */ 1, /*slot = */ 2); //Material
-		descRanges[3].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, /*numDescs = */ 1, /*slot = */ 0); //Texture
+		CD3DX12_DESCRIPTOR_RANGE descRanges[3] = {};
+		descRanges[0].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, /*numDescs = */ 2, /*slot = */ 0); //WVP Mat
+		descRanges[1].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, /*numDescs = */ 1, /*slot = */ 2); //Material
+		descRanges[2].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, /*numDescs = */ 1, /*slot = */ 0); //Texture
 
 		//RootParameters
 		CD3DX12_ROOT_PARAMETER rootParams[2] = {};
-		rootParams[0].InitAsDescriptorTable(/*numRanges = */ 2, &descRanges[0]);
-		rootParams[1].InitAsDescriptorTable(/*numRanges = */ 2, &descRanges[2]);
+		rootParams[0].InitAsDescriptorTable(/*numRanges = */ 1, &descRanges[0]);
+		rootParams[1].InitAsDescriptorTable(/*numRanges = */ 2, &descRanges[1]);
 
 		//Sampler
 		D3D12_STATIC_SAMPLER_DESC sampler[1] = {};
