@@ -94,8 +94,9 @@ void Mesh::Create(D3D12_CPU_DESCRIPTOR_HANDLE heapHandle)
 
 		//Material
 		size = (sizeof(Material) + 0xff) & ~0xff;
-		mCBuffs[i] = new HDL_ConstantBuffer(size, heapHandle);
+		mCBuffs[i] = new HDL_ConstantBuffer(size);
 		mCBuffs[i]->CopyBufferToVRAM(&mMeshData[i].material);
+		mCBuffs[i]->CreateCBV(heapHandle);
 
 		heapHandle.ptr += incSize;
 
@@ -105,8 +106,9 @@ void Mesh::Create(D3D12_CPU_DESCRIPTOR_HANDLE heapHandle)
 #endif
 		HDL_Texture texture(mMeshData[i].fileName.c_str());
 
-		mTexBuffs[i] = new HDL_TextureBuffer(texture.GetMetaData(), texture.GetImage(), heapHandle);
+		mTexBuffs[i] = new HDL_TextureBuffer(texture.GetMetaData(), texture.GetImage());
 		mTexBuffs[i]->CopyBufferToVRAM(texture.GetImage());
+		mTexBuffs[i]->CreateSRV(heapHandle);
 
 		heapHandle.ptr += incSize;
 	}

@@ -1,13 +1,15 @@
 #include "Alicia.h"
 #include "Transform.h"
-#include "CameraComponent.h"
+#include "Camera.h"
 #include "Mesh.h"
 #include "MeshRenderer.h"
 #include "HDL_DescriptorHeap.h"
 #include "HDL_Renderer.h"
 #include "HDL_Input.h"
 
-Alicia::Alicia() : m_pInput(HDL_Input::GetInstance())
+Alicia::Alicia(Camera* cam) :
+	m_pCam(cam),
+	m_pInput(HDL_Input::GetInstance())
 {
 	float scale = 0.01f;
 	Init();
@@ -17,7 +19,6 @@ Alicia::~Alicia()
 {
 	delete m_pMRendrerer;
 	delete m_pMesh;
-	delete m_pCam;
 	delete m_pTransform;
 	delete m_pDescHeap;
 }
@@ -63,8 +64,7 @@ void Alicia::Init()
 	handle.ptr += incSize;
 	 
 	//Cam
-	m_pCam = new CameraComponent;
-	m_pCam->Init(handle);
+	m_pCam->Register(handle);
 	handle.ptr += incSize;
 
 	//Mesh

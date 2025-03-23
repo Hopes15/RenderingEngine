@@ -11,6 +11,11 @@ public:
 	~Transform();
 
 	/// <summary>
+	/// None ConstantBuffer
+	/// </summary>
+	void Init();
+
+	/// <summary>
 	/// 初期化
 	/// </summary>
 	void Init(struct D3D12_CPU_DESCRIPTOR_HANDLE heapHandle);
@@ -19,6 +24,8 @@ public:
 	/// 毎フレーム更新
 	/// </summary>
 	void Update();
+
+	void UpdateWithoutCBuffer();
 
 	/// <summary>
 	/// 座標を設定
