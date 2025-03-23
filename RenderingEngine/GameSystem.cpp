@@ -11,8 +11,7 @@
 GameSystem::GameSystem() :
 	WIDTH(1920),
 	HEIGHT(1080),
-	FIXED_DELTA_TIME(0.02f),
-	mActivation(true)
+	FIXED_DELTA_TIME(0.02f)
 {
 }
 
@@ -30,7 +29,7 @@ GameSystem::~GameSystem()
 void GameSystem::Initialize()
 {
 	//ウィンドウ作成
-	pWindow = new HDL_Window(WIDTH, HEIGHT, L"Rendering Engine");
+	pWindow = new HDL_Window(WIDTH, HEIGHT, L"No Name");
 
 	//レンダラー作成
 	HDL_Renderer::Create(WIDTH, HEIGHT, pWindow->GetWindowHandler());
@@ -57,10 +56,8 @@ void GameSystem::Initialize()
 
 void GameSystem::ExcuteSystem()
 {
-	while (mActivation)
+	while (pWindow->ObserveMSG())
 	{
-		mActivation = pWindow->ObserveMSG();
-
 		Input();
 		Update();
 		Output();

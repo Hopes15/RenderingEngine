@@ -35,8 +35,6 @@ private:
 	class HDL_DepthStencilBuffer* pDSBuff	= nullptr;
 	class HDL_Input*			  pInput	= nullptr;
 
-	bool mActivation;
-
 	std::vector<class Model*> models;
 
 	//FILE

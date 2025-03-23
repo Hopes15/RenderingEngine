@@ -23,8 +23,6 @@ private:
 	class Mesh*				  m_pMesh	    = nullptr;
 	class MeshRenderer*       m_pMRendrerer = nullptr;
 
-	float erapsed = 0.0f;
-	float radian  = 0.0f;
 	float moveSpeed = 1.0f;
 
 	//FILE
