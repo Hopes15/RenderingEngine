@@ -19,7 +19,7 @@ Camera::~Camera()
 void Camera::Init()
 {
 	pTrans = new Transform;
-	pTrans->SetPosition(3.0f, 5.0f, -5.0f);
+	pTrans->SetPosition(3.0f, 3.0f, -3.0f);
 	pTrans->Init();
 
 	//ViewProjectionçsóÒ(3D)
@@ -32,7 +32,7 @@ void Camera::Init()
 	mViewProj.proj = XMMatrixPerspectiveFovLH(
 		XM_PIDIV2,
 		static_cast<float>(pRenderer->WINDOW_WIDTH) / static_cast<float>(pRenderer->WINDOW_HEIGHT),
-		0.5f,   //near
+		0.3f,   //near
 		1000.0f //far
 	);
 	mViewProj.eye  = mEye;

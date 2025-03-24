@@ -45,8 +45,8 @@ void Volkswagen::Init()
 
 	//Transform
 	m_pTransform = new Transform;
-	m_pTransform->SetRotation(0, XM_PIDIV4, 0);
-	m_pTransform->SetPosition(0.0f, 0, 1.0f);
+	m_pTransform->SetRotation(0, 3.14f / 3.0f, 0);
+	m_pTransform->SetPosition(-1.0f, 0, -3.0f);
 	m_pTransform->Init(handle);
 	handle.ptr += incSize;
 

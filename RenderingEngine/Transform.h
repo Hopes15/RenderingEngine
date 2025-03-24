@@ -25,6 +25,9 @@ public:
 	/// </summary>
 	void Update();
 
+	/// <summary>
+	/// CBuffer‚ğ—˜—p‚µ‚È‚¢ê‡‚ÌXV
+	/// </summary>
 	void UpdateWithoutCBuffer();
 
 	/// <summary>
