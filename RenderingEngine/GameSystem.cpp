@@ -7,6 +7,7 @@
 #include "Alicia.h"
 #include "Converter.h"
 #include "Volkswagen.h"
+#include "Camera.h"
 
 GameSystem::GameSystem() :
 	WIDTH(1920),
@@ -19,6 +20,7 @@ GameSystem::~GameSystem()
 {
 	delete wagen;
 	delete alicia;
+	delete pCam;
 	pInput->Destroy();
 	delete pDSBuff;
 	delete pBackBuff;
@@ -72,11 +74,13 @@ void GameSystem::Quit()
 void GameSystem::Input()
 {
 	alicia->Input();
+	//pCam->Input();
 }
 
 void GameSystem::Update()
 {
 	alicia->Update();
+	//pCam->Update();
 }
 
 void GameSystem::Output()
@@ -105,6 +109,8 @@ void GameSystem::Output()
 void GameSystem::Load()
 {
 	//Model¶¬
-	alicia = new Alicia;
-	wagen = new Volkswagen;
+	pCam = new Camera;
+	pCam->Init();
+	alicia = new Alicia(pCam);
+	wagen = new Volkswagen(pCam);
 }

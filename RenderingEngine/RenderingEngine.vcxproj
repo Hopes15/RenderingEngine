@@ -131,7 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CameraComponent.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Converter.cpp" />
     <ClCompile Include="Alicia.cpp" />
     <ClCompile Include="GameSystem.cpp" />
@@ -142,7 +142,7 @@
     <ClCompile Include="Volkswagen.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Converter.h" />
     <ClInclude Include="Alicia.h" />
     <ClInclude Include="GameSystem.h" />

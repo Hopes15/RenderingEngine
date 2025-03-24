@@ -1,12 +1,13 @@
 #include "Volkswagen.h"
 #include "Transform.h"
-#include "CameraComponent.h"
+#include "Camera.h"
 #include "Mesh.h"
 #include "MeshRenderer.h"
 #include "HDL_DescriptorHeap.h"
 #include "HDL_Renderer.h"
 
-Volkswagen::Volkswagen()
+Volkswagen::Volkswagen(Camera* cam) :
+	m_pCam(cam)
 {
 	Init();
 }
@@ -15,7 +16,6 @@ Volkswagen::~Volkswagen()
 {
 	delete m_pMRendrerer;
 	delete m_pMesh;
-	delete m_pCam;
 	delete m_pTransform;
 	delete m_pDescHeap;
 }
@@ -45,14 +45,13 @@ void Volkswagen::Init()
 
 	//Transform
 	m_pTransform = new Transform;
-	m_pTransform->SetRotation(0, XM_PIDIV4, 0);
-	m_pTransform->SetPosition(0.0f, 0, 1.0f);
+	m_pTransform->SetRotation(0, 3.14f / 3.0f, 0);
+	m_pTransform->SetPosition(-1.0f, 0, -3.0f);
 	m_pTransform->Init(handle);
 	handle.ptr += incSize;
 
 	//Cam
-	m_pCam = new CameraComponent;
-	m_pCam->Init(handle);
+	m_pCam->Register(handle);
 	handle.ptr += incSize;
 
 	//Mesh

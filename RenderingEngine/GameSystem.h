@@ -41,7 +41,8 @@ private:
 	const char* fileName = "";
 	const char* textFile = "";
 
-	//Models
+	//Object
+	class Camera*	  pCam   = nullptr;
 	class Alicia*     alicia = nullptr;
 	class Volkswagen* wagen  = nullptr;
 };
